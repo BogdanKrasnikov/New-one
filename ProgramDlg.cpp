@@ -25,7 +25,7 @@ void CProgramDlg::DoDataExchange(CDataExchange* pDX)
 {
 	fg = true;
 
-	SetWindowTextW(L"Program");
+	SetWindowTextW(L"Korablik");
 
 	CDialog::DoDataExchange(pDX);
 }
@@ -44,10 +44,10 @@ BOOL CProgramDlg::OnInitDialog()
 
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
-	SetIcon(m_hIcon, TRUE);                 // Set big icon
-	SetIcon(m_hIcon, FALSE);                // Set small icon
+	SetIcon(m_hIcon, TRUE);      // Set big icon
+	SetIcon(m_hIcon, FALSE);    // Set small icon
 
-											// TODO: Add extra initialization here
+								// TODO: Add extra initialization here
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -78,78 +78,11 @@ void CProgramDlg::OnPaint()
 	else
 	{
 
-		/*
-		CClientDC dc(this);
-		GetClientRect(&rc);
-		cf = RGB(0, 0, 0);
-		hPenOxy = CreatePen(PS_SOLID, 12, cf);
-		hOldPen = (HPEN)SelectObject(dc, hPenOxy);
-		dc.FillSolidRect(&rc, RGB(255, 255, 255));
-		RH = abs(rc.left - rc.right);
-		RW = abs(rc.top - rc.bottom);
-		cx = RH / 2;
-		cy = RW / 2;
-
-		x1 = w.left = cx - 120;
-		x2 = w.right = cx + 260;
-		y1 = w.top = cy -200;
-		y2 = w.bottom = cy + 45;
-		//t.Format(L"RH=%i   , RW=%i \n cx=%i  , cy=%i \n x1=%i  , y1=%i \n x2=%i  , y2=%i ", RH,RW,cx, cy,x1,y1,x2,y2);
-		//AfxMessageBox(t);
-		//FreightVehicle(x1, y1, x2, y2);
-		dc.Rectangle(&w);
-		w.left = x1 - 170;
-		w.top = y1 + 247;
-		w.right = x2 - 40;
-		w.bottom = y2 + 51;
-		dc.Rectangle(&w);
-		dc.MoveTo(x1 - 110, y1 + 60);
-		dc.LineTo(x2 - 425, y1 + 60);
-		dc.LineTo(x2 - 425, y2 - 80);
-		dc.LineTo(x1 - 150, y2 - 80);
-		dc.LineTo(x1 - 110, y1 + 60);
-		dc.MoveTo(x1 - 135, y1 + 35);
-		dc.LineTo(x2 - 400, y1 + 35);
-		dc.LineTo(x2 - 400, y2);
-		cf = RGB(255, 255, 255);
-		hPenOxy = CreatePen(PS_SOLID, 24, cf);
-		hOldPen = (HPEN)SelectObject(dc, hPenOxy);
-		dc.MoveTo(x2 - 418, y2);
-		dc.LineTo(x1 - 160, y2);
-		cf = RGB(0, 0, 0);
-		hPenOxy = CreatePen(PS_SOLID, 12, cf);
-		hOldPen = (HPEN)SelectObject(dc, hPenOxy);
-		dc.MoveTo(x1 - 170, y2 + 10);
-		dc.LineTo(x1 - 170, y2 - 120);
-		dc.LineTo(x1 - 135, y1 + 35);
-		int r1 = 110;
-		x = x2 - 200;
-		y = y2;
-		dc.Ellipse(x, y, x + r1, y + r1);
-		int r2 = 100;
-		x = x2 - 220;
-		y = y2 - 20;
-		dc.Ellipse(x + r2 / 2, y + r2 / 2, x + r2, y + r2);
-		r1 = 110;
-		x = x1 - 121;
-		y = y2;
-		dc.Ellipse(x, y, x + r1, y + r1);
-		r2 = 100;
-		x = x1 - 141;
-		y = y2 - 20;
-		dc.Ellipse(x + r2 / 2, y + r2 / 2, x + r2, y + r2);
-		//Kolco(x2 - 200, y2, 110, 100);
-		//Kolco(x1 - 121, y2, 110, 100);
-		SelectObject(dc, hOldPen);
-		DeleteObject(hPenOxy);
-		*/
-
-
 		CClientDC dc(this);
 		GetClientRect(&rc);
 
 		cf = RGB(0, 0, 0);
-		hPenOxy = CreatePen(PS_SOLID, 12, cf);
+		hPenOxy = CreatePen(PS_SOLID, 4, cf);
 		hOldPen = (HPEN)SelectObject(dc, hPenOxy);
 
 		dc.FillSolidRect(&rc, RGB(255, 255, 255));
@@ -163,97 +96,30 @@ void CProgramDlg::OnPaint()
 		dx = cx / 8;
 		dy = cy / 6;
 
-		x1 = w.left = 2 * cx / 3;
-		y1 = w.top = cy / 3;
-		x2 = w.right = 7 * cx / 4;
-		y2 = w.bottom = 5 * cy / 4;
+		x1 = w.left = cx;
+		y1 = w.top = cy - 4 * dy;
 
-		dc.MoveTo(x1 + 0.25*dx, y1);
-		dc.LineTo(x2, y1);
-		dc.LineTo(x2, y2);
+		for (x1 = x1 + 400; x1 >= -500; x1 -= 50)
+		{
+			Sleep(mtime - 50);
+			dc.FillSolidRect(&rc, RGB(255, 255, 255));
+			x2 = w.right = x1;
+			y2 = w.bottom = y1 + 8 * dy;
 
-		dc.LineTo(x2 - dx, y2);
-		dc.LineTo(x2 - dx, y2 + dy);
-		dc.LineTo(x1 - 8 * dx / 3, y2 + dy);
-		dc.LineTo(x1 - 8 * dx / 3, y2 - 2 * dy);
-		dc.LineTo(x1 - 1.45*dx, y2 - 4.5*dy);
-		dc.LineTo(x1 - 0.075*dx, y2 - 4.5*dy);
-		dc.LineTo(x1 - 0.075*dx, y2);
-		dc.LineTo(x2, y2);
-		dc.MoveTo(x1 + 0.25*dx, y1);
-		dc.LineTo(x1 + 0.25*dx, y2);
+			// Корпус ракеты
+			CorpusSpaceShip(x1, y1, x2, y2, dx, dy);
 
-		dc.MoveTo(x1 - 0.39*dx, y2 - 4.1*dy);
-		dc.LineTo(x1 - 0.39*dx, y2 - 1.1*dy);
-		dc.LineTo(x1 - 2.34*dx, y2 - 1.1*dy);
-		dc.LineTo(x1 - 0.89*dx, y2 - 4.1*dy);
-		dc.LineTo(x1 - 0.39*dx, y2 - 4.1*dy);
+			// Окошки
+			ElluminateSpaceShip(x1, y1, dx, dy);
 
-		int r1, r2;
-
-		r1 = 110;
-		r2 = 100;
+			// Крылья ракеты 
+			EquipmentSpaceShip(x1, y1, x2, y2, dx, dy);
+		}
 
 
 
-		x1 = w.left = rc.left + 130;
-		x2 = w.right = rc.right - 140;
-		y1 = w.top = rc.top + 310;
-		y2 = w.bottom = rc.bottom - 145;
-
-		dc.Rectangle(&w);
-		//green 
-		dc.FillSolidRect(&w, RGB(0, 255, 255));
-
-
-
-
-		x1 = w.left = 2 * cx / 3;
-		y1 = w.top = cy / 3;
-		x2 = w.right = 7 * cx / 4;
-		y2 = w.bottom = 5 * cy / 4;
-
-		x = x1 - 2.1*dx;
-		y = y2;
-		dc.Ellipse(x, y, x + r1, y + r1);
-
-		x = x1 - 2.5*dx;
-		y = y2 - dy*0.45;
-		dc.Ellipse(x + r2 / 2, y + r2 / 2, x + r2, y + r2);
-
-		x = x2 - 4.1*dx;
-		y = y2;
-		dc.Ellipse(x, y, x + r1, y + r1);
-
-		x = x2 - 4.5*dx;
-		y = y2 - dy * 0.45;
-		dc.Ellipse(x + r2 / 2, y + r2 / 2, x + r2, y + r2);
-
-
-
-
-		x1 = w.left = rc.left + 265;
-		x2 = w.right = rc.right - 100;
-		y1 = w.top = rc.top + 85;
-		y2 = w.bottom = rc.bottom - 190;
-
-		dc.Rectangle(&w);
-		//green 
-		dc.FillSolidRect(&w, RGB(0, 255, 0));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		SelectObject(dc, hOldPen);
+		DeleteObject(hPenOxy);
 
 
 		CDialog::OnPaint();
@@ -261,23 +127,109 @@ void CProgramDlg::OnPaint()
 }
 
 // The system calls this function to obtain the cursor to display while the user drags
-
 //  the minimized window.
 HCURSOR CProgramDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
-afx_msg void CProgramDlg::Kolco(int xc, int yc, int rc1, int rc2)
+
+void CProgramDlg::CorpusSpaceShip(int X1, int Y1, int X2, int Y2, int DX, int DY)
 {
 	CClientDC dc(this);
-
+	GetClientRect(&rc);
+	/*
 	cf = RGB(0, 0, 0);
-	hPenOxy = CreatePen(PS_SOLID, 12, cf);
+	hPenOxy = CreatePen(PS_SOLID, 4, cf);
 	hOldPen = (HPEN)SelectObject(dc, hPenOxy);
 
-	dc.Ellipse(xc, yc, xc + rc1, yc + rc1);
-	dc.Ellipse(xc - 20 + rc2 / 2, yc - 20 + rc2 / 2, xc - 20 + rc2, yc - 20 + rc2);
+	dc.MoveTo(X1, Y1);
+	dc.LineTo(X1 + DX, Y1 + 3 * DY);
+	dc.LineTo(X1 + DX, Y1 + 8 * DY);
+	dc.LineTo(X2, Y2);
+
+	dc.MoveTo(X1, Y1);
+	dc.LineTo(X1 - DX, Y1 + 3 * DY);
+	dc.LineTo(X1 - DX, Y1 + 8 * DY);
+	dc.LineTo(X2, Y2);
+	*/
+	SelectObject(dc, hOldPen);
+	DeleteObject(hPenOxy);
+
+}
+
+void CProgramDlg::ElluminateSpaceShip(int X1, int Y1, int DX, int DY)
+{
+	CClientDC dc(this);
+	GetClientRect(&rc);
+
+	cf = RGB(0, 0, 0);
+	hPenOxy = CreatePen(PS_SOLID, 4, cf);
+	hOldPen = (HPEN)SelectObject(dc, hPenOxy);
+
+	int r1;
+
+	r1 = DX / 3;
+	int x = X1 + DX;
+	int y = Y1 + 8 * DY;
+	dc.Ellipse(x - r1, y - r1, x + r1, y + r1);
+
+	x = x + DX;
+	dc.Ellipse(x - r1, y - r1, x + r1, y + r1);
 
 	SelectObject(dc, hOldPen);
 	DeleteObject(hPenOxy);
+
+}
+
+
+void CProgramDlg::EquipmentSpaceShip(int X1, int Y1, int X2, int Y2, int DX, int DY)
+{
+	CClientDC dc(this);
+	GetClientRect(&rc);
+
+	cf = RGB(0, 0, 0);
+	hPenOxy = CreatePen(PS_SOLID, 4, cf);
+	hOldPen = (HPEN)SelectObject(dc, hPenOxy);
+	dc.MoveTo(X1 - 5 * DX, Y1 + 9 * DY);
+	dc.LineTo(X1 - 5 * DX, Y1 + 8 * DY - DX / 3);
+	dc.LineTo(X1 + DX / 3, Y1 + 8 * DY - DX / 3);
+	dc.LineTo(X1 + 2 * (DX / 3), Y1 + 7 * DY);
+	dc.LineTo(X1 + 4 * DX, Y1 + 7 * DY);
+	dc.LineTo(X1 + 2 * DX + DX / 3, Y1 + 9 * DY);
+	dc.LineTo(X1 - 5 * DX, Y1 + 9 * DY);
+
+	dc.MoveTo(X1 - 4 * DX + DX / 3 + DX / 3, Y1 + 8 * DY - DX / 3);
+	dc.LineTo(X1 - 3 * DX, Y1 + 7 * DY);
+	dc.LineTo(X1 - 3 * DX, Y1 + 6 * DY);
+	dc.LineTo(X1 + 2 * DX + DX / 3, Y1 + 6 * DY);
+	dc.LineTo(X1 + 2 * DX + DX / 3, Y1 + 7 * DY);
+
+	dc.MoveTo(X1 - DX - DX / 3, Y1 + 6 * DY);
+	dc.LineTo(X1 - DX - DX / 3, Y1 + 4 * DY);
+	dc.LineTo(X1 - DX + DX / 3, Y1 + 4 * DY);
+	dc.LineTo(X1 - DX + DX / 3, Y1 + 6 * DY);
+	dc.LineTo(X1 - DX + DX / 3, Y1 + 6 * DY);
+
+
+	dc.MoveTo(X1 - DX + DX / 3, Y1 + 4 * DY + DX);
+	dc.LineTo(X1 + DX / 3 + DX / 3, Y1 + 4 * DY + DX);
+	dc.LineTo(X1 + DX / 3 + DX / 3, Y1 + 4 * DY + DX + DX / 2);
+
+	dc.MoveTo(X1 + DX / 3, Y1 + 4 * DY + DX);
+	dc.LineTo(X1 + DX / 3, Y1 + DY);
+	dc.MoveTo(X1 + DX / 3, Y1);
+	dc.LineTo(X1 - 5 * DX, Y1 + 8 * DY - DX / 3);
+	dc.MoveTo(X1 + DX / 3, Y1);
+	dc.LineTo(X1 + 4 * DX, Y1 + 7 * DY);
+
+
+
+
+	dc.MoveTo(X1 - 2 * DX - DX / 3, Y1 + 7 * DY);
+	dc.LineTo(X1 - DX / 3, Y1 + 7 * DY);
+
+	SelectObject(dc, hOldPen);
+	DeleteObject(hPenOxy);
+
+
 }
